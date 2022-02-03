@@ -1,0 +1,40 @@
+@import "../../styles/variables";
+
+header {
+  background-color: red;
+}
+
+.blackBar {
+  background-color: #000000;
+  height: 3rem;
+}
+
+.headerContent {
+  height: 5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  padding: 0 1rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      img {
+        height: 2.5rem;
+      }
+    }
+
+    h1 {
+      margin-left: 1rem;
+    }
+  }
+
+  h1 {
+    color: $white;
+  }
+}
