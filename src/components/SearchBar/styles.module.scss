@@ -1,0 +1,29 @@
+@import "../../styles/variables";
+
+.searchBar {
+  height: 8rem;
+  display: flex;
+  align-items: center;
+
+  input,
+  button {
+    background-color: $light-gray;
+    border: none;
+    height: 2rem;
+    padding: 0 1rem;
+  }
+
+  input {
+    width: 30rem;
+    border-radius: 12px 0 0 12px;
+    color: red;
+  }
+
+  button {
+    border-radius: 0 15px 15px 0;
+
+    svg {
+      color: red;
+    }
+  }
+}

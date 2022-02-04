@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+
+.sortMenuContainer {
+  span {
+    margin-right: 1rem;
+  }
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    color: red;
+
+    border: 1px solid red;
+    border-radius: 15px;
+    // padding: 2rem;
+    height: 2rem;
+    width: 12.5rem;
+    padding-left: 1rem;
+
+    background: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='red' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 50%;
+  }
+}
