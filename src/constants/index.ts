@@ -1,4 +1,4 @@
-export const types = [
+export const pokemonTypes = [
   'Bug',
   'Dark',
   'Dragon',
