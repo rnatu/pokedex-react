@@ -12,6 +12,8 @@ export function FilterMenu() {
         ))}
       </div>
       <span>Filtrar Favoritos</span>
+
+      <input type="checkbox" className={styles.switch_1} />
     </div>
   );
 }
