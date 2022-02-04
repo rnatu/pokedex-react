@@ -1,8 +1,8 @@
 import { Header } from '../../components/Header';
 import { PokemonCardList } from '../../components/PokemonCardList';
 import { SearchBar } from '../../components/SearchBar';
-import { SortMenu } from '../../components/SortMenu';
-import { TypeFilter } from '../../components/TypeFilter';
+import { SortOption } from '../../components/SortOption';
+import { FilterMenu } from '../../components/FilterMenu';
 
 import styles from './style.module.scss';
 
@@ -14,12 +14,12 @@ export function Home() {
       <main className={styles.mainContainer}>
         <header className={styles.mainHeader}>
           <SearchBar />
-          <SortMenu />
+          <SortOption />
         </header>
 
         <div className={styles.mainContent}>
           <aside className={styles.filterSection}>
-            <TypeFilter />
+            <FilterMenu />
           </aside>
 
           <section className={styles.pokemonsSection}>

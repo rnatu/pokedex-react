@@ -2,15 +2,16 @@ import { types } from '../../constants';
 import { TypeButton } from '../TypeButton';
 import styles from './styles.module.scss';
 
-export function TypeFilter() {
+export function FilterMenu() {
   return (
-    <div className={styles.typeFilterContainer}>
+    <div className={styles.filterMenuContainer}>
       <span>Filtrar por Tipo</span>
-      <div>
+      <div className={styles.buttonsContainer}>
         {types.map((type) => (
           <TypeButton type={type} />
         ))}
       </div>
+      <span>Filtrar Favoritos</span>
     </div>
   );
 }

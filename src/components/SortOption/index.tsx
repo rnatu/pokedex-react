@@ -1,8 +1,8 @@
 import styles from './styles.module.scss';
 
-export function SortMenu() {
+export function SortOption() {
   return (
-    <div className={styles.sortMenuContainer}>
+    <div className={styles.sortOptionContainer}>
       <span>Ordenar por</span>
       <label htmlFor="sortSearch">
         <select name="sortSearch">

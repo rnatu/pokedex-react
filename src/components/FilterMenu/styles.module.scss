@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.filterMenuContainer {
+  span {
+    display: inline-block;
+    margin-bottom: 0.6em;
+    font-weight: 500;
+  }
+
+  span ~ span {
+    margin-top: 2rem;
+  }
+
+  .buttonsContainer {
+    width: 13rem;
+  }
+}
