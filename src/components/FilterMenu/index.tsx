@@ -6,6 +6,14 @@ import styles from './styles.module.scss';
 export function FilterMenu() {
   const [typeButtonActive, setTypeButtonActive] = useState('');
 
+  const handleButtonClick = (type: string) => {
+    if (typeButtonActive === type) {
+      setTypeButtonActive('');
+      return;
+    }
+    setTypeButtonActive(type);
+  };
+
   return (
     <div className={styles.filterMenuContainer}>
       <span>Filtrar por Tipo</span>
@@ -15,7 +23,7 @@ export function FilterMenu() {
             key={type}
             type={type}
             typeButtonActive={typeButtonActive}
-            setTypeButtonActive={setTypeButtonActive}
+            handleButtonClick={handleButtonClick}
           />
         ))}
       </div>

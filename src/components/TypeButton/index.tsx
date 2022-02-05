@@ -3,13 +3,13 @@ import styles from './styles.module.scss';
 interface TypeButtonProps {
   type: string;
   typeButtonActive: string;
-  setTypeButtonActive: (type: string) => void;
+  handleButtonClick: (type: string) => void;
 }
 
 export function TypeButton({
   type,
   typeButtonActive,
-  setTypeButtonActive,
+  handleButtonClick,
 }: TypeButtonProps) {
   return (
     <button
@@ -17,7 +17,7 @@ export function TypeButton({
       className={`${styles.typeButton} ${
         typeButtonActive === type ? styles.active : ''
       }`}
-      onClick={() => setTypeButtonActive(type)}
+      onClick={() => handleButtonClick(type)}
     >
       {type}
 
