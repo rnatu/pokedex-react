@@ -3,8 +3,8 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import { apiURL } from '../constants';
 
 type PokemonContextType = {
-  pokemonList: PokemonData[];
-  setPokemonList: (pokemon: PokemonData[]) => void;
+  queryResult: PokemonData[];
+  searchEngine: (searchQuery: string) => PokemonData[] | void;
 };
 
 type PokemonContextProviderType = {
@@ -34,7 +34,11 @@ export const PokemonContext = createContext({} as PokemonContextType);
 export function PokemonContextProvider({
   children,
 }: PokemonContextProviderType) {
-  const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
+  const [apiPokemonListResult, setApiPokemonListResult] = useState<
+    PokemonData[]
+  >([]);
+
+  const [queryResult, setQueryResult] = useState<PokemonData[]>([]);
 
   useEffect(() => {
     (async function getPokemonData() {
@@ -49,7 +53,9 @@ export function PokemonContextProvider({
             ),
         );
 
-        setPokemonList(duplicateFilter);
+        setApiPokemonListResult(duplicateFilter);
+
+        setQueryResult(duplicateFilter);
       } catch (err: unknown) {
         if (err instanceof Error) {
           // eslint-disable-next-line no-alert
@@ -59,9 +65,27 @@ export function PokemonContextProvider({
     })();
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const searchEngine = (searchQuery: string) => {
+    if (searchQuery === '') {
+      return setQueryResult(apiPokemonListResult);
+    }
+
+    const results = apiPokemonListResult.filter(
+      (value) =>
+        value.name
+          .toLocaleLowerCase()
+          .startsWith(searchQuery?.toLocaleLowerCase()) ||
+        Number(value.national_number) === Number(searchQuery),
+    );
+    return setQueryResult(results);
+  };
+
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <PokemonContext.Provider value={{ pokemonList, setPokemonList }}>
+    <PokemonContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{ queryResult, searchEngine }}
+    >
       {children}
     </PokemonContext.Provider>
   );

@@ -29,7 +29,9 @@ export function Card({ image, name, number, types }: CardProps) {
       <span>Nº {number}</span>
       <h2>{name}</h2>
       {types.map((type) => (
-        <p className={styles[type]}>{type}</p>
+        <p key={type} className={styles[type]}>
+          {type}
+        </p>
       ))}
     </div>
   );
