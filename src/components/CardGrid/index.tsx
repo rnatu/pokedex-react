@@ -1,13 +1,14 @@
 import { usePokemon } from '../../hooks/usePokemon';
-import { PokemonCard } from '../PokemonCard/index';
+import { Card } from '../Card/index';
+import styles from './styles.module.scss';
 
-export function PokemonCardList() {
+export function CardGrid() {
   const { pokemonList } = usePokemon();
 
   return (
-    <>
+    <div className={styles.cardGrid}>
       {pokemonList.map((pokemon) => (
-        <PokemonCard
+        <Card
           key={`${pokemon.national_number}`}
           image={pokemon.sprites.large}
           name={pokemon.name}
@@ -15,6 +16,6 @@ export function PokemonCardList() {
           types={pokemon.type}
         />
       ))}
-    </>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Header } from '../../components/Header';
-import { PokemonCardList } from '../../components/PokemonCardList';
+import { CardGrid } from '../../components/CardGrid';
 import { SearchBar } from '../../components/SearchBar';
 import { SortOption } from '../../components/SortOption';
 import { FilterMenu } from '../../components/FilterMenu';
@@ -23,10 +23,12 @@ export function Home() {
           </aside>
 
           <section className={styles.pokemonsSection}>
-            <PokemonCardList />
+            <CardGrid />
           </section>
         </div>
       </main>
+
+      <footer className={styles.blackBar} />
     </>
   );
 }

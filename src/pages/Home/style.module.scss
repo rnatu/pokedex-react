@@ -1,7 +1,9 @@
 .mainContainer {
+  position: relative;
   padding: 0 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
 
   .mainHeader {
     display: flex;
@@ -13,4 +15,12 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
   }
+}
+
+.blackBar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #000000;
+  height: 3rem;
 }

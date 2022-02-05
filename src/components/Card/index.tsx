@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-interface PokemonCardProps {
+interface CardProps {
   image: string;
   name: string;
   number: string;
@@ -8,7 +8,7 @@ interface PokemonCardProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function PokemonCard({ image, name, number, types }: PokemonCardProps) {
+export function Card({ image, name, number, types }: CardProps) {
   function addDefaultSrc(e: any) {
     e.target.src =
       'https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/996/notfound.png';
