@@ -1,4 +1,3 @@
-import { FiCheck } from 'react-icons/fi';
 import styles from './styles.module.scss';
 
 interface TypeButtonProps {
@@ -22,7 +21,7 @@ export function TypeButton({
     >
       {type}
 
-      {typeButtonActive === type && <FiCheck />}
+      {typeButtonActive === type && <i className="fas fa-check fa-xs" />}
     </button>
   );
 }

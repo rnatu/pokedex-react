@@ -4,26 +4,28 @@
   height: 8rem;
   display: flex;
   align-items: center;
-
-  input,
-  button {
-    background-color: $light-gray;
-    border: none;
-    height: 2rem;
-    padding: 0 1rem;
-  }
+  position: relative;
 
   input {
+    background-color: $light-gray;
+
     width: 30rem;
-    border-radius: 12px 0 0 12px;
-    color: red;
+    height: 2rem;
+    padding: 0 1rem;
+
+    border: none;
+    border-radius: 12px;
+
+    font-weight: 400;
+
+    &::placeholder {
+      font-weight: 300;
+    }
   }
 
-  button {
-    border-radius: 0 15px 15px 0;
-
-    svg {
-      color: red;
-    }
+  i {
+    color: $red;
+    position: absolute;
+    left: 94%;
   }
 }

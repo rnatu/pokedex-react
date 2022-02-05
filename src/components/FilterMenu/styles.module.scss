@@ -5,21 +5,19 @@
   flex-direction: column;
 
   span {
-    display: inline-block;
     margin-bottom: 1rem;
-    font-weight: 500;
   }
 
-  span ~ span {
+  label p {
     margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
   .buttonsContainer {
     width: 13rem;
   }
 
-  input[type="checkbox"].switch_1 {
+  input[type="checkbox"].switch {
     font-size: 30px;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -35,11 +33,11 @@
     transition: all 0.2s ease-in-out;
   }
 
-  input[type="checkbox"].switch_1:checked {
+  input[type="checkbox"].switch:checked {
     background: #0ebeff;
   }
 
-  input[type="checkbox"].switch_1:after {
+  input[type="checkbox"].switch:after {
     position: absolute;
     content: "";
     width: 0.8em;
@@ -55,7 +53,7 @@
     transition: all 0.2s ease-in-out;
   }
 
-  input[type="checkbox"].switch_1:checked:after {
+  input[type="checkbox"].switch:checked:after {
     left: calc(100% - 0.8em);
   }
 }

@@ -14,6 +14,9 @@ export function Header() {
         </div>
         <div>
           <img src={synviaLogo} alt="Synvia Logo" />
+          <button type="button">
+            <i className="fas fa-sign-out-alt fa-lg" />
+          </button>
         </div>
       </div>
     </header>

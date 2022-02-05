@@ -10,7 +10,7 @@
 }
 
 .headerContent {
-  height: 5rem;
+  height: 6rem;
   max-width: 1200px;
   margin: 0 auto;
 
@@ -31,10 +31,16 @@
 
     h1 {
       margin-left: 1rem;
+      color: $white;
     }
-  }
 
-  h1 {
-    color: $white;
+    button {
+      margin-left: 1rem;
+      background: none;
+      border: none;
+      i {
+        color: $white;
+      }
+    }
   }
 }
