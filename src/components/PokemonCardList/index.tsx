@@ -12,7 +12,7 @@ export function PokemonCardList() {
           image={pokemon.sprites.large}
           name={pokemon.name}
           number={pokemon.national_number}
-          types={pokemon.types}
+          types={pokemon.type}
         />
       ))}
     </>

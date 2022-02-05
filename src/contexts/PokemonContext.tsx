@@ -17,7 +17,7 @@ type PokemonData = {
   };
   name: string;
   national_number: string;
-  types: string[];
+  type: string[];
   evolution: {
     name: string;
   };
@@ -41,15 +41,13 @@ export function PokemonContextProvider({
       try {
         const { data }: ApiResponseType = await axios.get(apiURL);
 
-        const duplicateFilter = () =>
-          data.results.filter(
-            (pokemon, index, array) =>
-              index ===
-              array.findIndex(
-                (element) =>
-                  element.national_number === pokemon.national_number,
-              ),
-          );
+        const duplicateFilter = data.results.filter(
+          (pokemon, index, array) =>
+            index ===
+            array.findIndex(
+              (element) => element.national_number === pokemon.national_number,
+            ),
+        );
 
         setPokemonList(duplicateFilter);
       } catch (err: unknown) {

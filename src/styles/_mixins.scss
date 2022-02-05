@@ -1,0 +1,8 @@
+@import "./variables";
+
+@mixin typeColor($type, $bgcolor, $color: $white) {
+  p.#{$type} {
+    background-color: $bgcolor;
+    color: $color;
+  }
+}

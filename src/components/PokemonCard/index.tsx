@@ -9,12 +9,25 @@ interface PokemonCardProps {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function PokemonCard({ image, name, number, types }: PokemonCardProps) {
+  function addDefaultSrc(e: any) {
+    e.target.src =
+      'https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/996/notfound.png';
+  }
+
   return (
     <div className={styles.card}>
-      <img src={image} alt={`Imagem de ${name}`} />
+      <div>
+        <img
+          onError={(e) => addDefaultSrc(e)}
+          src={image}
+          alt={`Imagem de ${name}`}
+        />
+      </div>
       <span>Nº {number}</span>
       <h2>{name}</h2>
-      <p>{types}</p>
+      {types.map((type) => (
+        <p className={styles[type]}>{type}</p>
+      ))}
     </div>
   );
 }

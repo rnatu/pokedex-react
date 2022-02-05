@@ -1,0 +1,47 @@
+@import "../../styles/global-imports";
+
+.card {
+  width: 13rem;
+  height: auto;
+  // border: 1px solid red;
+
+  img {
+    width: 100%;
+    height: 12rem;
+    filter: brightness(92%);
+  }
+
+  span {
+    color: #d1d1d1;
+  }
+
+  p {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+
+    & + p {
+      margin-left: 0.8rem;
+    }
+  }
+
+  @include typeColor("Fire", $fire);
+  @include typeColor("Normal", $normal);
+  @include typeColor("Water", $water);
+  @include typeColor("Grass", $grass, $font);
+  @include typeColor("Ice", $ice);
+  @include typeColor("Poison", $poison);
+  @include typeColor("Ground", $ground);
+  @include typeColor("Flying", $flying);
+  @include typeColor("Bug", $bug);
+  @include typeColor("Rock", $rock);
+  @include typeColor("Ghost", $ghost);
+  @include typeColor("Dragon", $dragon);
+  @include typeColor("Dark", $dark);
+  @include typeColor("Steel", $steel);
+  @include typeColor("Fairy", $fairy);
+  @include typeColor("Psychic", $psychic);
+  @include typeColor("Electric", $electric);
+  @include typeColor("Fighting", $fighting);
+}
