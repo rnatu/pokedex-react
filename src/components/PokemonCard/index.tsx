@@ -16,7 +16,10 @@ export function PokemonCard({ image, name, number, types }: PokemonCardProps) {
 
   return (
     <div className={styles.card}>
-      <div>
+      <div className={styles.cardImage}>
+        <button type="button">
+          <i className="far fa-heart fa-lg" />
+        </button>
         <img
           onError={(e) => addDefaultSrc(e)}
           src={image}
