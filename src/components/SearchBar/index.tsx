@@ -8,7 +8,7 @@ export function SearchBar() {
 
   useEffect(() => {
     searchEngine(search);
-  }, [search]);
+  }, [search, searchEngine]);
 
   return (
     <form action="/" className={styles.searchBar}>

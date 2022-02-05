@@ -65,7 +65,6 @@ export function PokemonContextProvider({
     })();
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const searchEngine = (searchQuery: string) => {
     if (searchQuery === '') {
       return setQueryResult(apiPokemonListResult);
