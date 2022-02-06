@@ -4,7 +4,7 @@ export const pokemonTypes = [
   'Dragon',
   'Electric',
   'Fairy',
-  'Fighter',
+  'Fighting',
   'Fire',
   'Flying',
   'Ghost',

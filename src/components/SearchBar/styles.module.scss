@@ -1,7 +1,6 @@
 @import "../../styles/global-imports";
 
 .searchBar {
-  height: 8rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -21,11 +20,15 @@
     &::placeholder {
       font-weight: 300;
     }
+
+    @include for-phone-only {
+      width: 21rem;
+    }
   }
 
   i {
     color: $red;
     position: absolute;
-    left: 94%;
+    left: 92%;
   }
 }

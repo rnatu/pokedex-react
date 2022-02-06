@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import {
   createContext,
@@ -11,9 +10,9 @@ import { apiURL } from '../constants';
 
 type PokemonContextType = {
   mainData: PokemonData[];
-  searchEngine: (searchQuery?: string, type?: string) => void;
+  setQuerySearch: (query: string) => void;
+  setOrderSelection: (order: string) => void;
   setTypeSearch: (type: string) => void;
-  setQuerySearch: (type: string) => void;
 };
 
 type PokemonContextProviderType = {
@@ -46,11 +45,10 @@ export function PokemonContextProvider({
   const [apiPokemonListResult, setApiPokemonListResult] = useState<
     PokemonData[]
   >([]);
-
   const [mainData, setMainData] = useState<PokemonData[]>([]);
-  const [actualSearch, setActualSearch] = useState<PokemonData[]>([]);
   const [typeSearch, setTypeSearch] = useState('');
   const [querySearch, setQuerySearch] = useState('');
+  const [orderSelection, setOrderSelection] = useState('ascending');
 
   useEffect(() => {
     (async function getPokemonData() {
@@ -77,34 +75,53 @@ export function PokemonContextProvider({
   }, []);
 
   const searchEngine = useCallback(
-    (queryString, typeString) => {
+    (query, order, type) => {
       const searchResult = apiPokemonListResult.filter(
         (value) =>
           value.name
             .toLocaleLowerCase()
-            .startsWith(queryString?.toLocaleLowerCase()) ||
-          Number(value.national_number) === Number(queryString),
+            .startsWith(query?.toLocaleLowerCase()) ||
+          Number(value.national_number) === Number(query),
       );
-
       setMainData(searchResult);
 
-      if (typeString !== '') {
-        setMainData(
-          searchResult.filter((item) => item.type.includes(typeString)),
-        );
+      if (order === 'ascending') {
+        searchResult.sort((a, b) => {
+          if (a.national_number > b.national_number) return 1;
+          if (a.national_number < b.national_number) return -1;
+          return 0;
+        });
+      }
+
+      if (order === 'descending') {
+        searchResult.sort((a, b) => {
+          if (a.national_number > b.national_number) return -1;
+          if (a.national_number < b.national_number) return 1;
+          return 0;
+        });
+      }
+
+      if (type !== '') {
+        setMainData(searchResult.filter((item) => item.type.includes(type)));
       }
     },
     [apiPokemonListResult],
   );
 
   useEffect(() => {
-    searchEngine(querySearch, typeSearch);
-  }, [querySearch, typeSearch, apiPokemonListResult, searchEngine]);
+    searchEngine(querySearch, orderSelection, typeSearch);
+  }, [
+    querySearch,
+    typeSearch,
+    apiPokemonListResult,
+    searchEngine,
+    orderSelection,
+  ]);
 
   return (
     <PokemonContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ mainData, searchEngine, setTypeSearch, setQuerySearch }}
+      value={{ mainData, setTypeSearch, setQuerySearch, setOrderSelection }}
     >
       {children}
     </PokemonContext.Provider>
