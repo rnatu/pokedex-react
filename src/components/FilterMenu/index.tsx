@@ -6,17 +6,17 @@ import { TypeButton } from '../TypeButton';
 import styles from './styles.module.scss';
 
 export function FilterMenu() {
+  const { setTypeSearch } = usePokemon();
   const [typeButtonActive, setTypeButtonActive] = useState('');
-  const { typeFilter } = usePokemon();
 
-  const handleButtonClick = (type: string) => {
+  const handleActiveButton = (type: string) => {
     if (typeButtonActive === type) {
       setTypeButtonActive('');
-      typeFilter('');
+      setTypeSearch('');
       return;
     }
     setTypeButtonActive(type);
-    typeFilter(type);
+    setTypeSearch(type);
   };
 
   return (
@@ -28,7 +28,7 @@ export function FilterMenu() {
             key={type}
             type={type}
             typeButtonActive={typeButtonActive}
-            handleButtonClick={handleButtonClick}
+            handleActiveButton={handleActiveButton}
           />
         ))}
       </div>
