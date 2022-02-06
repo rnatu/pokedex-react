@@ -1,10 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { apiURL } from '../constants';
 
 type PokemonContextType = {
-  queryResult: PokemonData[];
-  searchEngine: (searchQuery: string) => PokemonData[] | void;
+  mainData: PokemonData[];
+  searchEngine: (searchQuery?: string, type?: string) => void;
+  typeFilter: (type: string) => void;
 };
 
 type PokemonContextProviderType = {
@@ -38,7 +46,8 @@ export function PokemonContextProvider({
     PokemonData[]
   >([]);
 
-  const [queryResult, setQueryResult] = useState<PokemonData[]>([]);
+  const [mainData, setMainData] = useState<PokemonData[]>([]);
+  const [actualSearch, setActualSearch] = useState<PokemonData[]>([]);
 
   useEffect(() => {
     (async function getPokemonData() {
@@ -54,8 +63,8 @@ export function PokemonContextProvider({
         );
 
         setApiPokemonListResult(duplicateFilter);
-
-        setQueryResult(duplicateFilter);
+        setMainData(duplicateFilter);
+        setActualSearch(duplicateFilter);
       } catch (err: unknown) {
         if (err instanceof Error) {
           // eslint-disable-next-line no-alert
@@ -65,25 +74,32 @@ export function PokemonContextProvider({
     })();
   }, []);
 
-  const searchEngine = (searchQuery: string) => {
-    if (searchQuery === '') {
-      return setQueryResult(apiPokemonListResult);
-    }
-
-    const results = apiPokemonListResult.filter(
+  const searchEngine = (searchQueryString: string = '') => {
+    const searchResult = apiPokemonListResult.filter(
       (value) =>
         value.name
           .toLocaleLowerCase()
-          .startsWith(searchQuery?.toLocaleLowerCase()) ||
-        Number(value.national_number) === Number(searchQuery),
+          .startsWith(searchQueryString?.toLocaleLowerCase()) ||
+        Number(value.national_number) === Number(searchQueryString),
     );
-    return setQueryResult(results);
+
+    setActualSearch(searchResult);
+    setMainData(searchResult);
+  };
+
+  const typeFilter = (type: string) => {
+    if (type === '') {
+      setMainData(actualSearch);
+      return;
+    }
+
+    setMainData(actualSearch.filter((item) => item.type.includes(type)));
   };
 
   return (
     <PokemonContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ queryResult, searchEngine }}
+      value={{ mainData, searchEngine, typeFilter }}
     >
       {children}
     </PokemonContext.Provider>

@@ -3,11 +3,11 @@ import { Card } from '../Card/index';
 import styles from './styles.module.scss';
 
 export function CardGrid() {
-  const { queryResult } = usePokemon();
+  const { mainData } = usePokemon();
 
   return (
     <div className={styles.cardGrid}>
-      {queryResult.map((pokemon) => (
+      {mainData.map((pokemon) => (
         <Card
           key={`${pokemon.national_number}`}
           image={pokemon.sprites.large}

@@ -1,17 +1,22 @@
 import { useState } from 'react';
 import { pokemonTypes } from '../../constants';
+import { usePokemon } from '../../hooks/usePokemon';
+
 import { TypeButton } from '../TypeButton';
 import styles from './styles.module.scss';
 
 export function FilterMenu() {
   const [typeButtonActive, setTypeButtonActive] = useState('');
+  const { typeFilter } = usePokemon();
 
   const handleButtonClick = (type: string) => {
     if (typeButtonActive === type) {
       setTypeButtonActive('');
+      typeFilter('');
       return;
     }
     setTypeButtonActive(type);
+    typeFilter(type);
   };
 
   return (
