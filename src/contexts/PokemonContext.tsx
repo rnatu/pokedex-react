@@ -5,6 +5,7 @@ import {
   ReactNode,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { apiURL } from '../constants';
@@ -15,6 +16,7 @@ type PokemonContextType = {
   setOrderSelection: (order: string) => void;
   setTypeSearch: (type: string | null) => void;
   favoriteEngine: (pokemonNumber: string, isFavorite: boolean) => void;
+  setIsFavoriteFilter: (isFavoriteFilter: boolean) => void;
 };
 
 type PokemonContextProviderType = {
@@ -68,6 +70,7 @@ export function PokemonContextProvider({
   const [favoriteList, setFavoriteList] = useState<string[]>(
     JSON.parse(localStorage.getItem('favoritePokemonList') || '[]'),
   );
+  const [isFavoriteFilter, setIsFavoriteFilter] = useState(false);
 
   useEffect(() => {
     (async function getPokemonData() {
@@ -99,7 +102,12 @@ export function PokemonContextProvider({
   }, [favoriteList]);
 
   const searchEngine = useCallback(
-    (query: string, order: string, type: string | null) => {
+    (
+      query: string,
+      order: string,
+      type: string | null,
+      isFavoriteFilterOn: boolean,
+    ) => {
       const searchResult = apiPokemonListResult.filter(
         (value) =>
           value.name
@@ -129,43 +137,51 @@ export function PokemonContextProvider({
       if (type) {
         setMainData(searchResult.filter((item) => item.type.includes(type)));
       }
+
+      if (isFavoriteFilterOn) {
+        setMainData(searchResult.filter((item) => item.isFavorite));
+      }
     },
     [apiPokemonListResult],
   );
 
   useEffect(() => {
-    searchEngine(querySearch, orderSelection, typeSearch);
+    searchEngine(querySearch, orderSelection, typeSearch, isFavoriteFilter);
   }, [
     querySearch,
     typeSearch,
     apiPokemonListResult,
     searchEngine,
     orderSelection,
+    isFavoriteFilter,
   ]);
 
-  const favoriteEngine = (pokemonNumber: string, isFavorite: boolean) => {
-    if (!isFavorite) {
-      setFavoriteList((oldState) => [...oldState, pokemonNumber]);
-      const setFavorite = mainData.map((pokemon) =>
-        pokemon.national_number === pokemonNumber
-          ? { ...pokemon, isFavorite: true }
-          : pokemon,
-      );
+  const favoriteEngine = useCallback(
+    (pokemonNumber: string, isFavorite: boolean) => {
+      if (!isFavorite) {
+        setFavoriteList((oldState) => [...oldState, pokemonNumber]);
+        const setFavorite = mainData.map((pokemon) =>
+          pokemon.national_number === pokemonNumber
+            ? { ...pokemon, isFavorite: true }
+            : pokemon,
+        );
 
-      setMainData(setFavorite);
-    } else {
-      setFavoriteList((oldState) =>
-        oldState.filter((item) => item !== pokemonNumber),
-      );
-      const setFavorite = mainData.map((pokemon) =>
-        pokemon.national_number === pokemonNumber
-          ? { ...pokemon, isFavorite: false }
-          : pokemon,
-      );
+        setMainData(setFavorite);
+      } else {
+        setFavoriteList((oldState) =>
+          oldState.filter((item) => item !== pokemonNumber),
+        );
+        const setFavorite = mainData.map((pokemon) =>
+          pokemon.national_number === pokemonNumber
+            ? { ...pokemon, isFavorite: false }
+            : pokemon,
+        );
 
-      setMainData(setFavorite);
-    }
-  };
+        setMainData(setFavorite);
+      }
+    },
+    [mainData],
+  );
 
   useEffect(
     () =>
@@ -173,17 +189,20 @@ export function PokemonContextProvider({
     [favoriteList],
   );
 
+  const providerValues = useMemo(
+    () => ({
+      mainData,
+      setTypeSearch,
+      setQuerySearch,
+      setOrderSelection,
+      favoriteEngine,
+      setIsFavoriteFilter,
+    }),
+    [mainData, favoriteEngine],
+  );
+
   return (
-    <PokemonContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{
-        mainData,
-        setTypeSearch,
-        setQuerySearch,
-        setOrderSelection,
-        favoriteEngine,
-      }}
-    >
+    <PokemonContext.Provider value={providerValues}>
       {children}
     </PokemonContext.Provider>
   );

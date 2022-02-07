@@ -10,7 +10,6 @@ interface CardProps {
 }
 
 export function Card({ image, name, number, types, isFavorite }: CardProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { favoriteEngine } = usePokemon();
 
   const handleFavorite = () => {
@@ -31,7 +30,7 @@ export function Card({ image, name, number, types, isFavorite }: CardProps) {
           className={isFavorite ? `${styles.always}` : `${styles.onlyHover}`}
         >
           {isFavorite ? (
-            <i className="fas fa-heart" />
+            <i className="fas fa-heart fa-lg" />
           ) : (
             <i className="far fa-heart fa-lg" />
           )}

@@ -6,7 +6,7 @@ import { TypeButton } from '../TypeButton';
 import styles from './styles.module.scss';
 
 export function FilterMenu() {
-  const { setTypeSearch } = usePokemon();
+  const { setTypeSearch, setIsFavoriteFilter } = usePokemon();
   const [typeButtonActive, setTypeButtonActive] = useState<string | null>('');
 
   const handleActiveButton = (type: string) => {
@@ -17,6 +17,10 @@ export function FilterMenu() {
     }
     setTypeButtonActive(type);
     setTypeSearch(type);
+  };
+
+  const handleToggleFavoriteFilter = (isFavoriteFilterChecked: boolean) => {
+    setIsFavoriteFilter(isFavoriteFilterChecked);
   };
 
   return (
@@ -39,6 +43,7 @@ export function FilterMenu() {
           id="toggle-favorites"
           type="checkbox"
           className={styles.switch}
+          onChange={(e) => handleToggleFavoriteFilter(e.target.checked)}
         />
       </label>
     </div>
