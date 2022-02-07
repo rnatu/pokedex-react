@@ -4,7 +4,8 @@ import { SearchBar } from '../../components/SearchBar';
 import { SortOption } from '../../components/SortOption';
 import { FilterMenu } from '../../components/FilterMenu';
 
-import styles from './style.module.scss';
+import styles from './styles.module.scss';
+import { Footer } from '../../components/Footer';
 
 export function Home() {
   return (
@@ -28,7 +29,7 @@ export function Home() {
         </div>
       </main>
 
-      <footer className={styles.blackBar} />
+      <Footer />
     </>
   );
 }

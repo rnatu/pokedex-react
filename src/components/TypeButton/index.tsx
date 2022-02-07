@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 interface TypeButtonProps {
   type: string;
-  typeButtonActive: string;
+  typeButtonActive: string | null;
   handleActiveButton: (type: string) => void;
 }
 
@@ -15,7 +15,7 @@ export function TypeButton({
     <button
       type="button"
       className={`${styles.typeButton} ${
-        typeButtonActive === type ? styles.active : ''
+        typeButtonActive === type && styles.active
       }`}
       onClick={() => handleActiveButton(type)}
     >

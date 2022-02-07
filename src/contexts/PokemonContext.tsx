@@ -12,7 +12,7 @@ type PokemonContextType = {
   mainData: PokemonData[];
   setQuerySearch: (query: string) => void;
   setOrderSelection: (order: string) => void;
-  setTypeSearch: (type: string) => void;
+  setTypeSearch: (type: string | null) => void;
 };
 
 type PokemonContextProviderType = {
@@ -46,7 +46,7 @@ export function PokemonContextProvider({
     PokemonData[]
   >([]);
   const [mainData, setMainData] = useState<PokemonData[]>([]);
-  const [typeSearch, setTypeSearch] = useState('');
+  const [typeSearch, setTypeSearch] = useState<string | null>(null);
   const [querySearch, setQuerySearch] = useState('');
   const [orderSelection, setOrderSelection] = useState('ascending');
 
@@ -75,7 +75,7 @@ export function PokemonContextProvider({
   }, []);
 
   const searchEngine = useCallback(
-    (query, order, type) => {
+    (query: string, order: string, type: string | null) => {
       const searchResult = apiPokemonListResult.filter(
         (value) =>
           value.name
@@ -83,7 +83,6 @@ export function PokemonContextProvider({
             .startsWith(query?.toLocaleLowerCase()) ||
           Number(value.national_number) === Number(query),
       );
-      setMainData(searchResult);
 
       if (order === 'ascending') {
         searchResult.sort((a, b) => {
@@ -101,7 +100,9 @@ export function PokemonContextProvider({
         });
       }
 
-      if (type !== '') {
+      setMainData(searchResult);
+
+      if (type) {
         setMainData(searchResult.filter((item) => item.type.includes(type)));
       }
     },

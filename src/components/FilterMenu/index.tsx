@@ -7,12 +7,12 @@ import styles from './styles.module.scss';
 
 export function FilterMenu() {
   const { setTypeSearch } = usePokemon();
-  const [typeButtonActive, setTypeButtonActive] = useState('');
+  const [typeButtonActive, setTypeButtonActive] = useState<string | null>('');
 
   const handleActiveButton = (type: string) => {
     if (typeButtonActive === type) {
-      setTypeButtonActive('');
-      setTypeSearch('');
+      setTypeButtonActive(null);
+      setTypeSearch(null);
       return;
     }
     setTypeButtonActive(type);

@@ -2,44 +2,44 @@
 
 .header {
   background-color: red;
-}
 
-.blackBar {
-  background-color: #000000;
-  height: 3rem;
-}
+  .blackBar {
+    background-color: #000000;
+    height: 3rem;
+  }
 
-.headerContent {
-  height: 6rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  .headerContent {
+    height: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
 
-  padding: 0 1rem;
+    padding: 0 1rem;
 
-  display: flex;
-  justify-content: space-between;
-
-  div {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 
-    &:first-child {
-      img {
-        height: 2.5rem;
+    div {
+      display: flex;
+      align-items: center;
+
+      &:first-child {
+        img {
+          height: 2.5rem;
+        }
       }
-    }
 
-    h1 {
-      margin-left: 1rem;
-      color: $white;
-    }
-
-    button {
-      margin-left: 1rem;
-      background: none;
-      border: none;
-      i {
+      h1 {
+        margin-left: 1rem;
         color: $white;
+      }
+
+      button {
+        margin-left: 1rem;
+        background: none;
+        border: none;
+        i {
+          color: $white;
+        }
       }
     }
   }
