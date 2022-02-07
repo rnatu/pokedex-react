@@ -1,3 +1,4 @@
+import { usePokemon } from '../../hooks/usePokemon';
 import styles from './styles.module.scss';
 
 interface CardProps {
@@ -5,10 +6,17 @@ interface CardProps {
   name: string;
   number: string;
   types: string[];
+  isFavorite: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Card({ image, name, number, types }: CardProps) {
+export function Card({ image, name, number, types, isFavorite }: CardProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { favoriteEngine } = usePokemon();
+
+  const handleFavorite = () => {
+    favoriteEngine(number, isFavorite);
+  };
+
   function addDefaultSrc(e: any) {
     e.target.src =
       'https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/996/notfound.png';
@@ -17,8 +25,16 @@ export function Card({ image, name, number, types }: CardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.cardImage}>
-        <button type="button">
-          <i className="far fa-heart fa-lg" />
+        <button
+          type="button"
+          onClick={handleFavorite}
+          className={isFavorite ? `${styles.always}` : `${styles.onlyHover}`}
+        >
+          {isFavorite ? (
+            <i className="fas fa-heart" />
+          ) : (
+            <i className="far fa-heart fa-lg" />
+          )}
         </button>
         <img
           onError={(e) => addDefaultSrc(e)}

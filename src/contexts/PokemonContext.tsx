@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import {
   createContext,
@@ -9,10 +10,11 @@ import {
 import { apiURL } from '../constants';
 
 type PokemonContextType = {
-  mainData: PokemonData[];
+  mainData: PokemonMainData[];
   setQuerySearch: (query: string) => void;
   setOrderSelection: (order: string) => void;
   setTypeSearch: (type: string | null) => void;
+  favoriteEngine: (pokemonNumber: string, isFavorite: boolean) => void;
 };
 
 type PokemonContextProviderType = {
@@ -29,6 +31,20 @@ type PokemonData = {
   evolution: {
     name: string;
   };
+  isFavorite: boolean;
+};
+
+type PokemonMainData = {
+  sprites: {
+    large: string;
+  };
+  name: string;
+  national_number: string;
+  type: string[];
+  evolution: {
+    name: string;
+  };
+  isFavorite: boolean;
 };
 
 type ApiResponseType = {
@@ -45,10 +61,13 @@ export function PokemonContextProvider({
   const [apiPokemonListResult, setApiPokemonListResult] = useState<
     PokemonData[]
   >([]);
-  const [mainData, setMainData] = useState<PokemonData[]>([]);
+  const [mainData, setMainData] = useState<PokemonMainData[]>([]);
   const [typeSearch, setTypeSearch] = useState<string | null>(null);
   const [querySearch, setQuerySearch] = useState('');
   const [orderSelection, setOrderSelection] = useState('ascending');
+  const [favoriteList, setFavoriteList] = useState<string[]>(
+    JSON.parse(localStorage.getItem('favoritePokemonList') || '[]'),
+  );
 
   useEffect(() => {
     (async function getPokemonData() {
@@ -63,8 +82,13 @@ export function PokemonContextProvider({
             ),
         );
 
-        setApiPokemonListResult(duplicateFilter);
-        setMainData(duplicateFilter);
+        const favoritesVerify = duplicateFilter.map((pokemon) => ({
+          ...pokemon,
+          isFavorite: favoriteList.includes(pokemon.national_number),
+        }));
+
+        setApiPokemonListResult(favoritesVerify);
+        setMainData(favoritesVerify);
       } catch (err: unknown) {
         if (err instanceof Error) {
           // eslint-disable-next-line no-alert
@@ -72,7 +96,7 @@ export function PokemonContextProvider({
         }
       }
     })();
-  }, []);
+  }, [favoriteList]);
 
   const searchEngine = useCallback(
     (query: string, order: string, type: string | null) => {
@@ -119,10 +143,46 @@ export function PokemonContextProvider({
     orderSelection,
   ]);
 
+  const favoriteEngine = (pokemonNumber: string, isFavorite: boolean) => {
+    if (!isFavorite) {
+      setFavoriteList((oldState) => [...oldState, pokemonNumber]);
+      const setFavorite = mainData.map((pokemon) =>
+        pokemon.national_number === pokemonNumber
+          ? { ...pokemon, isFavorite: true }
+          : pokemon,
+      );
+
+      setMainData(setFavorite);
+    } else {
+      setFavoriteList((oldState) =>
+        oldState.filter((item) => item !== pokemonNumber),
+      );
+      const setFavorite = mainData.map((pokemon) =>
+        pokemon.national_number === pokemonNumber
+          ? { ...pokemon, isFavorite: false }
+          : pokemon,
+      );
+
+      setMainData(setFavorite);
+    }
+  };
+
+  useEffect(
+    () =>
+      localStorage.setItem('favoritePokemonList', JSON.stringify(favoriteList)),
+    [favoriteList],
+  );
+
   return (
     <PokemonContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ mainData, setTypeSearch, setQuerySearch, setOrderSelection }}
+      value={{
+        mainData,
+        setTypeSearch,
+        setQuerySearch,
+        setOrderSelection,
+        favoriteEngine,
+      }}
     >
       {children}
     </PokemonContext.Provider>

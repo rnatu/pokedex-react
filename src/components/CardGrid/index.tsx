@@ -14,6 +14,7 @@ export function CardGrid() {
           name={pokemon.name}
           number={pokemon.national_number}
           types={pokemon.type}
+          isFavorite={pokemon.isFavorite}
         />
       ))}
     </div>
