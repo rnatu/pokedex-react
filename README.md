@@ -51,6 +51,7 @@ Nesta aplicação o meu principal objetivo foi criar uma Pokédex com registro 
 
 ### Funcionalidades Adicionais
 
+- TypeScript
 - Múltiplos filtros funcionando simultaneamente
 - Design adaptado para responsividade
 - Boas Práticas de SEO e acessibilidade.
