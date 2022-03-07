@@ -39,6 +39,7 @@ export function Card({ image, name, number, types, isFavorite }: CardProps) {
           onError={(e) => addDefaultSrc(e)}
           src={image}
           alt={`Imagem de ${name}`}
+          loading="lazy"
         />
       </div>
       <span>Nº {number}</span>
