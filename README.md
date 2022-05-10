@@ -29,7 +29,7 @@ Nesse desafio, criei uma aplicação de Pokédex utilizando ReactJS/TypeScri
   Acesse a aplicação pelo link abaixo
 </h1>
 <h2 align="center">
-  <a href=" https://pokedex-synvia.herokuapp.com/">
+  <a href="https://pokedex-synvia.herokuapp.com/">
   https://pokedex-synvia.herokuapp.com/
   </a>
 </h2>
