@@ -1,22 +1,19 @@
 <h1 align="center">
-<img alig src="https://acelerarh.com.br/images/cliente_novo_4.png" width=500 alt="Desafio Synvia">
-  <br>
-  <br>
-    DESAFIO TÉCNICO SYNVIA – FRONT-END
+<img alig src="https://camo.githubusercontent.com/418d92ecbe7cd1805153001a34147ab7c965103432ff4a68eaa2fc5d4e6c1b42/68747470733a2f2f696b2e696d6167656b69742e696f2f6877796b73766a3469762f706f6b656465785f4e5f576757724a4b30732e706e67" width=500 alt="Pokédex logo">
 </h1>
 
-<h4 align="center">
+<h3 align="center">
   Criando uma Pokédex com ReactJS/Typescript
-</h4>
+</h3>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/rnatu/">
-    <img alt="Made By" src="https://img.shields.io/static/v1?label=Made%20By&message=Renato%20Xavier&color=6C4FBB&style=for-the-badge">
+    <img alt="Made By" src="https://img.shields.io/static/v1?label=Made%20By&message=Renato%20Xavier&color=3667B3&style=for-the-badge">
   </a>
 </p>
 
 <p align="center">
-Nesse desafio, criei uma aplicação de Pokédex utilizando ReactJS/TypeScript
+Desenvolvi uma aplicação de Pokédex utilizando ReactJS/TypeScript
 </p>
 
 <p align="center">
@@ -25,20 +22,20 @@ Nesse desafio, criei uma aplicação de Pokédex utilizando ReactJS/TypeScri
   <a href="#ℹ️-Como-utilizar">Como utilizar</a>
 </p>
 
-<h1 align="center">
-  Acesse a aplicação pelo link abaixo
-</h1>
-<h2 align="center">
-  <a href="https://pokedex-synvia.herokuapp.com/">
+<h3 align="center">
+  Acesse a aplicação pelo link abaixo<br />
+   <font size="4">
+   <a  href="https://pokedex-synvia.herokuapp.com/">
   https://pokedex-synvia.herokuapp.com/
   </a>
-</h2>
+  </font>
+</h3>
 
  <br>
 
 ## 📜 Sobre o projeto
 
-Nesta aplicação o meu principal objetivo foi criar uma Pokédex com registro de todos os pokemons fornecidos por uma API, criando a interface através de um layout previamente enviado, buscando deixar o mais próximo possível.
+Nesta aplicação o meu principal objetivo foi criar uma Pokédex com registro de todos os pokemons fornecidos por uma API, criando a interface através de um layout previamente construído, buscando deixar o mais próximo possível.
 
 ### Principais funcionalidades implementadas
 
