@@ -13,13 +13,13 @@
 </p>
 
 <p align="center">
-Desenvolvi uma aplicação de Pokédex utilizando ReactJS/TypeScript
+Desenvolvi uma aplicação de uma Pokédex do zero utilizando ReactJS e TypeScript como base
 </p>
 
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias-utilizadas">Tecnologias utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#ℹ️-Como-utilizar">Como utilizar</a>
+  <a href="#-Como-utilizar">Como utilizar</a>
 </p>
 
 <h3 align="center">
