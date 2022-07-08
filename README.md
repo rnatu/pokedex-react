@@ -31,8 +31,6 @@ Desenvolvi uma aplicação de Pokédex utilizando ReactJS/TypeScript
   </font>
 </h3>
 
- <br>
-
 ## 📜 Sobre o projeto
 
 Nesta aplicação o meu principal objetivo foi criar uma Pokédex com registro de todos os pokemons fornecidos por uma API, criando a interface através de um layout previamente construído, buscando deixar o mais próximo possível.
@@ -52,6 +50,8 @@ Nesta aplicação o meu principal objetivo foi criar uma Pokédex com registro 
 - Múltiplos filtros funcionando simultaneamente
 - Design adaptado para responsividade
 - Boas Práticas de SEO e acessibilidade.
+- Filtro para pokemons repetidos buscados na API
+- Filtro para pokemons com imagens inválidas
 
 ## 🚀 Tecnologias utilizadas
 
@@ -61,6 +61,7 @@ Nesta aplicação o meu principal objetivo foi criar uma Pokédex com registro 
 - [TypeScript](https://www.typescriptlang.org/)
 - [axios](https://github.com/axios/axios)
 - [localStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+- API - <https://unpkg.com/pokemons@1.1.0/pokemons.json>
 
 Code formatter:
 
