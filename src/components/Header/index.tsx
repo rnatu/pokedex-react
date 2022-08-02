@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-import pokeball from '../../assets/images/pokeball.svg';
+import pokeball from '../../assets/images/pokeball-icon.png';
 
 export function Header() {
   return (
