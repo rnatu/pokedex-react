@@ -1,11 +1,11 @@
 @import "../../styles/global-imports";
 
 .header {
-  background-color: red;
+  background-color: rgb(204, 29, 29);
 
   .blackBar {
-    background-color: #000000;
-    height: 3rem;
+    background-color: #161616;
+    height: 2rem;
   }
 
   .headerContent {
@@ -16,7 +16,7 @@
     padding: 0 1rem;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     div {
       display: flex;
@@ -31,15 +31,6 @@
       h1 {
         margin-left: 1rem;
         color: $white;
-      }
-
-      button {
-        margin-left: 1rem;
-        background: none;
-        border: none;
-        i {
-          color: $white;
-        }
       }
     }
   }
